@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+
 export default function NotFound() {
   const [url, setUrl] = useState("");
 
@@ -8,15 +9,22 @@ export default function NotFound() {
   }, []);
 
   async function fetchCoffee() {
-    const res = await fetch("https://media-cldnry.s-nbcnews.com/image/upload/newscms/2019_33/2203981/171026-better-coffee-boost-se-329p.jpg");
-    const obj = await res.json();
-    setUrl(obj[0].url);
+    try {
+      const res = await fetch("https://coffee.alexflipnote.dev/random.json");
+      const obj = await res.json();
+      
+      setUrl(obj.file);
+    } catch (error) {
+      console.error("Failed to fetch coffee image:", error);
+    }
   }
 
-  return (
+   return (
     <div>
       <h2>Page not found</h2>
-      <img src={url} alt="coffee" />
+      
+      {url && <img src={url} alt="A random coffee" className="max-w-full" />}
+
     </div>
   );
 }
