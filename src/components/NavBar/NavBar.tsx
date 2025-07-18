@@ -2,13 +2,10 @@ import { NavLink } from "react-router-dom";
 import { ROUTES } from "../../constants/routes";
 import { cn } from "clsx-for-tailwind";
 
-const baseLink =
-  "px-3 py-1 rounded-lg font-medium transition";
+const baseLink = "px-3 py-1 rounded-lg font-medium transition";
 
-const activeLink =
-  "bg-blue-600 text-white";
-const inactiveLink =
-  "text-gray-200 hover:bg-gray-800";
+const activeLink = "bg-blue-600 text-white";
+const inactiveLink = "text-gray-200 hover:bg-gray-800";
 
 export const NavBar = () => (
   <nav className="flex justify-center gap-4 bg-gray-900 py-3 shadow rounded-xl">
@@ -35,6 +32,22 @@ export const NavBar = () => (
       }
     >
       Addons
+    </NavLink>
+    <NavLink
+      to={ROUTES.HOT}
+      className={({ isActive }) =>
+        cn(baseLink, isActive ? activeLink : inactiveLink)
+      }
+    >
+      Hot Drinks
+    </NavLink>
+    <NavLink
+      to={ROUTES.ICED}
+      className={({ isActive }) =>
+        cn(baseLink, isActive ? activeLink : inactiveLink)
+      }
+    >
+      Iced Drinks
     </NavLink>
     <NavLink
       to={ROUTES.BREWING}
@@ -70,4 +83,3 @@ export const NavBar = () => (
     </NavLink>
   </nav>
 );
-
