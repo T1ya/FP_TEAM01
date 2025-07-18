@@ -1,0 +1,94 @@
+.container {
+    padding: 10rem;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 2rem auto;
+
+  }
+ /* Фон с картой, растянутый на весь экран, с низким z-index */
+.background-map {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  opacity: 0.15;
+  z-index: -1; /* Отправляем фон под контент */
+  pointer-events: none;
+}
+
+/* Основной контейнер — поверх карты */
+.container {
+  position: relative;
+  max-width: 900px;
+  margin: 40px auto; /* отступ сверху и снизу, центрирование по горизонтали */
+  padding: 20px 30px;
+  background-color: rgba(255, 255, 255, 0.95); /* светлый фон для читаемости */
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  z-index: 10;
+}
+
+/* Горизонтальное расположение картинок */
+.image-section {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-top: 25px;
+  flex-wrap: wrap; /* на случай узких экранов */
+}
+
+/* Каждая карточка */
+.image-card {
+  cursor: pointer;
+  text-align: center;
+  max-width: 180px;
+  flex-shrink: 0;
+}
+
+.image-card img {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+  transition: transform 0.25s ease;
+}
+
+.image-card:hover img {
+  transform: scale(1.05);
+}
+
+/* Фуллскрин-оверлей */
+.fullscreen-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0,0,0,0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  cursor: pointer;
+}
+
+.fullscreen-overlay img {
+  max-width: 90vw;
+  max-height: 90vh;
+  border-radius: 12px;
+  box-shadow: 0 0 25px black;
+}
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Carte_Coffea_robusta_arabic.svg/330px-Carte_Coffea_robusta_arabic.svg.png');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.4; /* если используется */
+  filter: brightness(100); /* 1 = норм, >1 = ярче */
+  
+}
