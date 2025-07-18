@@ -7,5 +7,6 @@ export const ROUTES = {
     BREWING: "/brewing",
     READY: "/ready",
     ABOUT: "/about-us",
-    CONTACTS: "/contacts"
+    CONTACTS: "/contacts",
+    
 }
