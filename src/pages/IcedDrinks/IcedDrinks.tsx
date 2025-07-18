@@ -51,25 +51,20 @@ export const IcedDrinks = () => {
     {drinks.map((drink) => (
       <div
         key={drink.id}
-        // className="bg-white rounded-xl shadow-md overflow-hidden"
         className="bg-white rounded-xl shadow-md overflow-hidden flex flex-col h-full"
       >
         {drink.image && (
           <img
             src={Array.isArray(drink.image) ? drink.image[0] : drink.image}
             alt={drink.title}
-            // className="w-full h-48 object-cover"
             className="w-full h-48 object-cover transition-transform duration-300 hover:scale-105"
           />
         )}       
-           {/* <div className="p-4 flex flex-col gap-2"> */}
            <div className="p-4 flex flex-col gap-2 flex-1">
           <h2 className="text-lg font-semibold">{drink.title}</h2>
           <p className="text-sm text-gray-700 flex-grow">{drink.description}</p>
           <Link
             to={ROUTES.ADDONS}
-            // className="mt-2 inline-block bg-yellow-700 hover:bg-yellow-800 text-white font-semibold py-1 px-3 rounded"
-            // className="mt-auto inline-block bg-yellow-700 hover:bg-yellow-800 text-white font-semibold py-1 px-3 rounded"
              className="mt-auto inline-block bg-yellow-700 hover:bg-yellow-800 text-white font-semibold py-2 px-4 rounded text-center w-full"
           >
             Add-ons
