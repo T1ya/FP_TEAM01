@@ -5,45 +5,30 @@ import { Home } from "../pages/Home/Home";
 
 
 import NotFound from "../pages/NotFound/NotFound";
-import Addons from "../pages/Addons/Addons";
 import Order from "../pages/Order/Order";
+import Addons from "../pages/Addons/Addons";
 import Brewing from "../pages/Brewing/Brewing";
 import Ready from "../pages/Ready/Ready";
-import About from "../pages/About/About";
 import Contacts from "../pages/Contacts/Contacts";
+import About from "../pages/About/About";
+import { HotDrinks } from "../pages/HotDrinks/HotDrinks";
+import { IcedDrinks } from "../pages/IcedDrinks/IcedDrinks";
 
 export default function AppRoutes() {
   return (
    <Routes>
         <Route path={ROUTES.HOME} element={<MainLayout/>}>
             <Route index element={<Home/>}/>
-            <Route path="*" element={<NotFound />} />
+            <Route path={ROUTES.ORDER} element={<Order/>} />
+            <Route path={ROUTES.HOT} element={<HotDrinks/>} />
+            <Route path={ROUTES.ICED} element={<IcedDrinks/>} />
+            <Route path={ROUTES.ADDONS} element={<Addons/>} />
+            <Route path={ROUTES.BREWING} element={<Brewing/>} />
+            <Route path={ROUTES.READY} element={<Ready/>} />
+            <Route path={ROUTES.CONTACTS} element={<Contacts/>} />
+            <Route path={ROUTES.ABOUT} element={<About/>} />
+            <Route path="*" element={<NotFound/>}/>
         </Route>
-        <Route path={ROUTES.ORDER} element={<MainLayout/>}>
-            <Route index element={<Order/>} />
-            <Route path=":orderId" element={<div>Order Details</div>} />
-            </Route>
-        <Route path={ROUTES.ADDONS} element={<MainLayout/>}>
-            <Route index element={<Addons/>} />
-            <Route path=":addonId" element={<div>Addon Details</div>} />
-        </Route>
-        <Route path={ROUTES.BREWING} element={<MainLayout/>}>
-            <Route index element={<Brewing/>} />
-            <Route path=":brewId" element={<div>Brewing Details</div>} />
-        </Route>
-        <Route path={ROUTES.READY} element={<MainLayout/>}>
-            <Route index element={<Ready/>} />
-            <Route path=":readyId" element={<div>Ready Details</div>} />
-        </Route>
-        <Route path={ROUTES.ABOUT} element={<MainLayout/>}>
-            <Route index element={<About/>} />
-            <Route path="team" element={<div>Our Team</div>} />
-        </Route>
-        <Route path={ROUTES.CONTACTS} element={<MainLayout/>}>
-            <Route index element={<Contacts/>} />
-            <Route path="support" element={<div>Support</div>} />
-        </Route>
-
    </Routes>
   ) 
 }
