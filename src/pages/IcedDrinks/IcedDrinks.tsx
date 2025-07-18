@@ -57,18 +57,17 @@ export const IcedDrinks = () => {
           <img
             src={Array.isArray(drink.image) ? drink.image[0] : drink.image}
             alt={drink.title}
-            className="w-full h-48 object-cover"
+            // className="w-full h-48 object-cover"
+            className="w-full h-48 object-cover transition-transform duration-300 hover:scale-105"
           />
-        )}
-        {/* <div className="p-4">
-          <h2 className="text-lg font-semibold mb-2">{drink.title}</h2>
-          <p className="text-sm text-gray-700">{drink.description}</p> */}
+        )}       
            <div className="p-4 flex flex-col gap-2">
           <h2 className="text-lg font-semibold">{drink.title}</h2>
           <p className="text-sm text-gray-700 flex-grow">{drink.description}</p>
           <Link
             to={ROUTES.ADDONS}
-            className="mt-2 inline-block bg-yellow-700 hover:bg-yellow-800 text-white font-semibold py-1 px-3 rounded"
+            // className="mt-2 inline-block bg-yellow-700 hover:bg-yellow-800 text-white font-semibold py-1 px-3 rounded"
+            className="mt-auto inline-block bg-yellow-700 hover:bg-yellow-800 text-white font-semibold py-1 px-3 rounded"
           >
             Add-ons
           </Link>
