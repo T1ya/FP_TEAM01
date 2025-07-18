@@ -11,13 +11,8 @@ const Brewing: React.FC = () => {
     >
       <div className="bg-white/70 rounded-2xl p-10 shadow-xl w-[300px] flex flex-col items-center">
         <div className="relative mb-4">
-          {/* Чашка */}
           <div className="w-24 h-16 bg-brown-700 rounded-b-full relative z-10"></div>
-          
-          {/* Ручка чашки */}
           <div className="absolute top-2 right-[-15px] w-6 h-10 border-4 border-brown-700 rounded-full z-0"></div>
-
-          {/* Пар */}
           <div className="absolute top-[-30px] left-[30%] w-2 h-10 bg-white/70 rounded-full animate-steam"></div>
           <div className="absolute top-[-40px] left-[45%] w-2 h-12 bg-white/60 rounded-full animate-steam delay-200"></div>
           <div className="absolute top-[-50px] left-[60%] w-2 h-14 bg-white/50 rounded-full animate-steam delay-500"></div>
@@ -28,7 +23,6 @@ const Brewing: React.FC = () => {
         </p>
       </div>
 
-      {/* Анимация пара */}
       <style>
         {`
           @keyframes steam {
