@@ -10,8 +10,12 @@ export default function NotFound() {
 
   async function fetchCoffee() {
     try {
-      const res = await fetch("https://coffee.alexflipnote.dev/random.json");
+      const res = await fetch("https://coffee.alexflipnote.dev/random.json", {
+        headers:{"Accept": "Application/json"},
+        mode: 'cors'
+      });
       const obj = await res.json();
+      console.log(obj);
       
       setUrl(obj.file);
     } catch (error) {
@@ -20,11 +24,14 @@ export default function NotFound() {
   }
 
    return (
-    <div>
-      <h2>Page not found</h2>
-      
-      {url && <img src={url} alt="A random coffee" className="max-w-full" />}
-
+    <div
+      style={{
+        backgroundImage: `url(${url})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      <h1>Страница не найдена</h1>
     </div>
   );
 }
