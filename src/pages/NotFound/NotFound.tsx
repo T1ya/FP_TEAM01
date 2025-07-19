@@ -42,11 +42,12 @@ export const NotFound = () => {
   return (
     <div
       className="flex items-center justify-center min-h-screen bg-cover bg-center bg-no-repeat text-center p-4"
+      // className="w-full max-w-md bg-black bg-opacity-70 p-8 rounded-2xl shadow-lg"
       style={{
         backgroundImage: `url(${imageUrl})`,
       }}
     >
-      <div className="bg-black bg-opacity-60 p-10 rounded-xl shadow-lg">
+      <div className="bg-[rgba(0,0,0,0.75)] px-30 py-3 rounded-xl shadow-lg">
         <h1 className="text-8xl md:text-9xl font-bold text-white">404</h1>
         <p className="text-2xl font-light text-white mt-4">
           Page Not Found
