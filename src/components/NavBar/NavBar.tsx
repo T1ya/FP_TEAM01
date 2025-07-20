@@ -26,14 +26,6 @@ export const NavBar = () => (
       Order
     </NavLink>
     <NavLink
-      to={ROUTES.ADDONS}
-      className={({ isActive }) =>
-        cn(baseLink, isActive ? activeLink : inactiveLink)
-      }
-    >
-      Addons
-    </NavLink>
-    <NavLink
       to={ROUTES.HOT}
       className={({ isActive }) =>
         cn(baseLink, isActive ? activeLink : inactiveLink)

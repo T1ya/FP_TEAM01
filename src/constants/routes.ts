@@ -3,7 +3,7 @@ export const ROUTES = {
     ORDER: "/order",
     HOT: "/hot-drinks",
     ICED: "/iced-drinks",
-    ADDONS: "/addons",
+    DRINKCARD: "/drinks/:type/:id",
     BREWING: "/brewing",
     READY: "/ready",
     ABOUT: "/about-us",

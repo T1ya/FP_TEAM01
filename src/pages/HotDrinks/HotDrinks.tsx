@@ -1,14 +1,6 @@
 import { useEffect, useState } from "react";
-import type { Drink } from "../../types";
 import { Link } from "react-router-dom";
-
-interface ApiDrink {
-  id: number;
-  title: string;
-  description: string;
-  ingredients: string[];
-  image: string;
-}
+import type Drink from "../../types";
 
 export const HotDrinks = () => {
   const [drinks, setDrinks] = useState<Drink[]>([]);
@@ -19,15 +11,9 @@ export const HotDrinks = () => {
   async function fetchDrinks() {
     try {
       const res = await fetch("https://api.sampleapis.com/coffee/hot");
-      const apiDrinks: ApiDrink[] = await res.json();
+      const apiDrinks: Drink[] = await res.json();
 
-      const transformedDrinks: Drink[] = apiDrinks.map((drink: ApiDrink) => ({
-        ...drink,
-        image: [drink.image],
-        price: "1",
-      }));
-
-      setDrinks(transformedDrinks);
+      setDrinks(apiDrinks);
     } catch (error) {
       console.error("Failed to fetch drinks:", error);
     }
@@ -45,7 +31,7 @@ export const HotDrinks = () => {
                        transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl"
           >
             <img
-              src={p.image[0]}
+              src={Array.isArray(p.image) ? p.image[0] : p.image}
               alt={p.title}
               className="w-full h-80 object-cover"
             />
@@ -62,7 +48,7 @@ export const HotDrinks = () => {
               </span>
 
               <Link
-                to={`/drinks/${p.id}`}
+                to={`/drinks/hot/${p.id}`}
                 className="mt-auto bg-blue-500 text-white font-bold py-2 px-6 rounded-lg text-center
                            hover:bg-blue-600 transition-colors"
               >

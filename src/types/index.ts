@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-export interface Drink   {
+export default interface Drink   {
     price: ReactNode;
     title: string,
     description: string,

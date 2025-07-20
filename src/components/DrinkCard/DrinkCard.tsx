@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 
 interface Drink {
@@ -9,21 +10,26 @@ interface Drink {
   id: number;
 }
 export default function AddonsCard() {
+  const { id, type } = useParams<{ id: string; type: string }>();
   const [drink, setDrink] = useState<Drink | undefined>(undefined);
 
   async function fetchAddons() {
-    const res = await fetch("https://api.sampleapis.com/coffee/hot/3");
-    if (!res.ok) {
-      throw new Error("Network response was not ok");
+      try {
+        const res = await fetch(`https://api.sampleapis.com/coffee/${type}/${id}`);
+        if (!res.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const obj = await res.json();
+        setDrink(obj);
+      } catch (err) {
+        console.error("Ошибка загрузки:", err);
+      }
     }
-    const obj = await res.json();
-    setDrink(obj);
-  }
 
 
   useEffect(() => {
-    fetchAddons(); 
-  }, []);
+    if(id) fetchAddons(); 
+  }, [id]);
 
 if (!drink) {
   return <div>Загрузка...</div>;

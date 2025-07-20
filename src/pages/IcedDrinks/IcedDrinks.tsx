@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { ROUTES } from "../../constants/routes";
-
-interface Drink {
-  id: number;
-  title: string;
-  description: string;
-  ingredients: string[];
-  image: string | string[];
-}
+import type Drink from "../../types";
+// interface Drink {
+//   id: number;
+//   title: string;
+//   description: string;
+//   ingredients: string[];
+//   image: string | string[];
+// }
 
 export const IcedDrinks = () => {
   const [drinks, setDrinks] = useState<Drink[]>([]);
@@ -64,7 +63,7 @@ export const IcedDrinks = () => {
           <h2 className="text-lg font-semibold">{drink.title}</h2>
           <p className="text-sm text-gray-700 flex-grow">{drink.description}</p>
           <Link
-            to={ROUTES.ADDONS}
+            to={`/drinks/iced/${drink.id}`}
              className="mt-auto inline-block bg-yellow-700 hover:bg-yellow-800 text-white font-semibold py-2 px-4 rounded text-center w-full"
           >
             Add-ons
