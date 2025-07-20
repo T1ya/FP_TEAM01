@@ -1,5 +1,82 @@
-export default function Ready() {
+import React from 'react';
+
+const Ready: React.FC = () => {
   return (
-    <div>Ready Page</div>
-  )
-}
+    <div
+      className="w-full h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center"
+      style={{
+        backgroundImage:
+          "url('https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+      }}
+    >
+      <div className="bg-white/80 rounded-2xl p-10 shadow-xl w-[300px] flex flex-col items-center animate-fade-in">
+        <div className="relative mb-4">
+          <div className="w-24 h-16 bg-brown-700 rounded-b-full relative z-10"></div>
+          <div className="absolute top-2 right-[-15px] w-6 h-10 border-4 border-brown-700 rounded-full z-0"></div>
+          <div className="absolute top-[-30px] left-[30%] w-2 h-10 bg-white/70 rounded-full animate-steam"></div>
+          <div className="absolute top-[-40px] left-[45%] w-2 h-12 bg-white/60 rounded-full animate-steam delay-200"></div>
+          <div className="absolute top-[-50px] left-[60%] w-2 h-14 bg-white/50 rounded-full animate-steam delay-500"></div>
+        </div>
+
+        <h1 className="text-xl font-semibold text-brown-900 text-center">
+          Ваш кофе готов!
+        </h1>
+        <p className="mt-2 text-center text-brown-700 text-sm">
+          Идеальный момент — прямо сейчас 🤎
+        </p>
+      </div>
+
+      <style>
+        {`
+          @keyframes steam {
+            0% {
+              opacity: 0.6;
+              transform: translateY(0) scaleX(1);
+            }
+            100% {
+              opacity: 0;
+              transform: translateY(-40px) scaleX(1.2);
+            }
+          }
+
+          .animate-steam {
+            animation: steam 2s infinite ease-in-out;
+          }
+
+          .delay-200 {
+            animation-delay: 0.2s;
+          }
+
+          .delay-500 {
+            animation-delay: 0.5s;
+          }
+
+          .bg-brown-700 {
+            background-color: #5C4033;
+          }
+
+          .border-brown-700 {
+            border-color: #5C4033;
+          }
+
+          @keyframes fadeIn {
+            from {
+              opacity: 0;
+              transform: scale(0.95);
+            }
+            to {
+              opacity: 1;
+              transform: scale(1);
+            }
+          }
+
+          .animate-fade-in {
+            animation: fadeIn 0.8s ease-out;
+          }
+        `}
+      </style>
+    </div>
+  );
+};
+
+export default Ready;
