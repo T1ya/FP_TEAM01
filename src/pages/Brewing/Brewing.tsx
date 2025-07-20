@@ -1,6 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Brewing: React.FC = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      navigate('/ready');  
+    }, 10000);  
+
+    return () => clearTimeout(timer); 
+  }, [navigate]);
   return (
     <div
       className="w-full h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center"
@@ -21,6 +31,9 @@ const Brewing: React.FC = () => {
         <p className="text-xl font-semibold text-brown-900 animate-pulse text-center">
           Готовим напиток...
         </p>
+        <div className="absolute bottom-0 left-0 w-full h-2 bg-brown-200 rounded-b-2xl overflow-hidden">
+          <div className="h-full bg-brown-700 animate-progress-bar"></div>
+        </div>
       </div>
 
       <style>
@@ -52,8 +65,40 @@ const Brewing: React.FC = () => {
             background-color: #5C4033;
           }
 
+            .bg-brown-200 {
+            background-color: #d3b8a3;
+          }
+
           .border-brown-700 {
             border-color: #5C4033;
+          }
+
+        @keyframes progressBar {
+            0% {
+              width: 0%;
+            }
+            100% {
+              width: 100%;
+            }
+          }
+
+          .animate-progress-bar {
+            animation: progressBar 10s linear forwards;
+          }
+
+          @keyframes fadeIn {
+            from {
+              opacity: 0;
+              transform: scale(0.95);
+            }
+            to {
+              opacity: 1;
+              transform: scale(1);
+            }
+          }
+
+          .animate-fade-in {
+            animation: fadeIn 0.8s ease-out;
           }
         `}
       </style>
