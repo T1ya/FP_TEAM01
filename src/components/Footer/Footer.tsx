@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../constants/routes";
 
-
 interface FooterProps {
   className?: string;
 }
@@ -24,18 +23,16 @@ export const Footer: React.FC<FooterProps> = ({ className }) => {
             <h3 className="text-lg font-bold mb-2">Links</h3>
             <ul>
               <li>
-                <Link to={ROUTES.HOME} className="text-black hover:text-gray-500 text-sm">
+                <Link
+                  to={ROUTES.HOME}
+                  className="text-black hover:text-gray-500 text-sm"
+                >
                   Home
                 </Link>
               </li>
               <li>
                 <a href="#" className="text-black hover:text-gray-500 text-sm">
                   Services
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-black hover:text-gray-500 text-sm">
-                  About
                 </a>
               </li>
             </ul>
