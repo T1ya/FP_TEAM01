@@ -1,6 +1,16 @@
-import React from 'react';
+import React, { useEffect } from "react";
+import { useCart } from "../../hooks/useCart";
+import { useCounter } from "../../hooks/useCounter";
 
 const Ready: React.FC = () => {
+  const { clearCart } = useCart();
+  const { reset } = useCounter();
+
+  useEffect(() => {
+    clearCart();
+    reset();
+  }, []);
+
   return (
     <div
       className="w-full h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center"

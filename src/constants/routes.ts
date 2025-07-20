@@ -8,5 +8,5 @@ export const ROUTES = {
     READY: "/ready",
     ABOUT: "/about-us",
     CONTACTS: "/contacts",
-    
+    CART: "/cart",
 }

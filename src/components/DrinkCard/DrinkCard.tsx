@@ -1,56 +1,69 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useCart } from "../../hooks/useCart";
+import { useCounter } from "../../hooks/useCounter";
+import type Drink from "../../types";
 
-
-interface Drink {
-  title: string;
-  description: string;
-  ingredients: string[];
-  image:  string;
-  id: number;
+interface Props {
+  drink: Drink;
+  type?: "hot" | "iced";
+  showAddToCart?: boolean;
+  showLink?: boolean;
 }
-export default function AddonsCard() {
-  const { id, type } = useParams<{ id: string; type: string }>();
-  const [drink, setDrink] = useState<Drink | undefined>(undefined);
 
-  async function fetchAddons() {
-      try {
-        const res = await fetch(`https://api.sampleapis.com/coffee/${type}/${id}`);
-        if (!res.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const obj = await res.json();
-        setDrink(obj);
-      } catch (err) {
-        console.error("Ошибка загрузки:", err);
-      }
-    }
+export default function DrinkCard({
+  drink,
+  type = "hot",
+  showAddToCart = true,
+  showLink = true,
+}: Props) {
+  const { addToCart } = useCart();
+  const { increment } = useCounter();
 
-
-  useEffect(() => {
-    if(id) fetchAddons(); 
-  }, [id]);
-
-if (!drink) {
-  return <div>Загрузка...</div>;
-}
   return (
-    <div>
-        <h2>{drink .title}</h2>
-        <h2>{drink.description}</h2>
+    <div className="flex flex-col bg-white rounded-xl shadow-lg overflow-hidden group hover:shadow-2xl transition duration-300">
+      <div className="relative">
         <img
-            src={drink.image}  
-            alt={drink.title}
-            style={{ width: 250, borderRadius: 8 }}
-/>        
-<div>
-  <b>Ingredients:</b>
-  <ul>
-    {drink.ingredients.map((ing, idx) => (
-      <li key={idx}>{ing}</li>
-    ))}
-  </ul>
-</div>
+          src={Array.isArray(drink.image) ? drink.image[0] : drink.image}
+          alt={drink.title}
+          className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+        />
+        <span className="absolute top-2 left-2 bg-green-600 text-white text-xs px-2 py-1 rounded">
+          ${drink.price}
+        </span>
+      </div>
+
+      <div className="p-4 flex flex-col flex-grow gap-2">
+        <h2 className="text-lg font-semibold text-gray-900">{drink.title}</h2>
+        <p className="text-sm text-gray-600 line-clamp-3">
+          {drink.description}
+        </p>
+        {drink.ingredients?.length > 0 && (
+          <div className="text-sm text-gray-500">
+            <span className="font-medium text-gray-700">Ингредиенты:</span>{" "}
+            {drink.ingredients.join(", ")}
+          </div>
+        )}
+
+        <div className="mt-auto flex gap-2">
+          {showAddToCart && (
+            <button
+              onClick={() => {addToCart(drink)
+              increment()}}
+              className="bg-green-600 hover:bg-green-700 text-white text-sm font-medium px-4 py-2 rounded"
+            >
+              В корзину
+            </button>
+          )}
+          {showLink && (
+            <Link
+              to={`/drinks/${type}/${drink.id}`}
+              className="bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium px-4 py-2 rounded text-center"
+            >
+              Подробнее
+            </Link>
+          )}
+        </div>
+      </div>
     </div>
-    )
-  }
+  );
+}

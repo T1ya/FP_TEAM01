@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 
 export default interface Drink   {
-    price: ReactNode;
+    price: ReactNode | undefined;
     title: string,
     description: string,
     ingredients: string[],

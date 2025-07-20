@@ -12,7 +12,8 @@ import Contacts from "../pages/Contacts/Contacts";
 import About from "../pages/About/About";
 import { HotDrinks } from "../pages/HotDrinks/HotDrinks";
 import { IcedDrinks } from "../pages/IcedDrinks/IcedDrinks";
-import DrinkCard from "../components/DrinkCard/DrinkCard";
+import Cart from "../pages/Cart/Cart";
+import DrinkDetailPage from "../pages/DrinkDetailsPage.tsx/DrinkDetailsPage";
 
 export default function AppRoutes() {
   return (
@@ -20,9 +21,10 @@ export default function AppRoutes() {
         <Route path={ROUTES.HOME} element={<MainLayout/>}>
             <Route index element={<Home/>}/>
             <Route path={ROUTES.ORDER} element={<Order/>} />
+            <Route path={ROUTES.CART} element={<Cart/>} />
             <Route path={ROUTES.HOT} element={<HotDrinks/>} />
             <Route path={ROUTES.ICED} element={<IcedDrinks/>} />
-            <Route path={ROUTES.DRINKCARD} element={<DrinkCard/>} />
+            <Route path={ROUTES.DRINKCARD} element={<DrinkDetailPage />} />
             <Route path={ROUTES.BREWING} element={<Brewing/>} />
             <Route path={ROUTES.READY} element={<Ready/>} />
             <Route path={ROUTES.CONTACTS} element={<Contacts/>} />
