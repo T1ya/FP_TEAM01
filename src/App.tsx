@@ -7,11 +7,11 @@ import { CounterProvider } from "./providers/CounterProvider";
 function App() {
   return (
     <BrowserRouter>
-      <CartProvider>
-        <CounterProvider>
+      <CounterProvider>
+        <CartProvider>
           <AppRoutes />
-        </CounterProvider>
-      </CartProvider>
+        </CartProvider>
+      </CounterProvider>
     </BrowserRouter>
   );
 }
