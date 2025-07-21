@@ -26,8 +26,8 @@ export const HotDrinks = () => {
   }
 
   return (
-    <div className="p-8 bg-gray-50 min-h-screen">
-      <h2 className="text-3xl font-bold text-center mb-10">Products list</h2>
+    <div className="p-8 min-h-screen">
+      {/* <h2 className="text-3xl font-bold text-center mb-10">Products list</h2> */}
 
       <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {drinks.map((drink) => (
