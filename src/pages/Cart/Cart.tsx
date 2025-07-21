@@ -14,7 +14,7 @@ export default function Cart() {
   const navigate = useNavigate();
   return (
     <div className="p-8 max-w-4xl mx-auto w-full">
-      <h2 className="text-3xl font-bold mb-6 text-center text-white">🛒 Ваша корзина</h2>
+      <h2 className="text-3xl font-bold mb-6 text-center text-gray-300">🛒 Ваша корзина</h2>
 
       {cart.length === 0 ? (
         <p className="text-gray-500 text-center">
@@ -26,52 +26,54 @@ export default function Cart() {
             {cart.map((drink) => (
               <li
                 key={drink.id}
-                className="flex flex-col md:flex-row items-center gap-4 bg-white p-4 rounded-xl shadow-md"
+                
+                className="relative flex flex-col md:flex-row items-stretch gap-4 bg-white/60 p-4 rounded-xl shadow-lg"
               >
                 <img
                   src={
                     Array.isArray(drink.image) ? drink.image[0] : drink.image
                   }
                   alt={drink.title}
-                  className="w-24 h-24 object-cover rounded-lg"
+                  className="w-24 md:w-32 object-cover rounded-lg flex-shrink-0"
                 />
-                {/* 1. Убрали md:text-left с этого контейнера */}
-                <div className="flex-grow text-center">
-                  {/* 2. Добавили md:text-left к текстовым элементам */}
-                  <h3 className="text-xl font-semibold md:text-left">{drink.title}</h3>
-                  <p className="text-sm text-gray-600 mt-1 line-clamp-2 md:text-left">
-                    {drink.description}
-                  </p>
-                  <p className="text-lg font-bold text-green-700 mt-1 md:text-left">
-                    ${drink.price}
-                  </p>
-                  
-                  {/* 3. Убрали md:justify-start у счётчика, чтобы он всегда был по центру */}
-                  <div className="flex items-center justify-center gap-3 mt-2">
-                    <button
-                      onClick={() => decreaseQuantity(drink.id)}
-                      className="bg-gray-200 text-gray-700 font-bold py-1 px-3 rounded-full hover:bg-gray-300 transition"
-                    >
-                      -
-                    </button>
-                    <span className="font-semibold text-lg w-8 text-center">
-                      {drink.quantity}
-                    </span>
-                    <button
-                      onClick={() => increaseQuantity(drink.id)}
-                      className="bg-gray-200 text-gray-700 font-bold py-1 px-3 rounded-full hover:bg-gray-300 transition"
-                    >
-                      +
-                    </button>
+
+                
+                <div className="flex-grow flex flex-col pb-10">
+                  <div className="text-center md:text-left">
+                    <h3 className="text-xl font-semibold">{drink.title}</h3>
+                    <p className="text-sm text-gray-700 mt-1 line-clamp-2">
+                      {drink.description}
+                    </p>
+                    <p className="text-lg font-bold text-green-700 mt-1">
+                      ${drink.price}
+                    </p>
                   </div>
+                </div>
+                
+                
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center justify-center gap-3">
+                  <button
+                    onClick={() => decreaseQuantity(drink.id)}
+                    className="bg-gray-200 text-gray-700 font-bold py-1 px-3 rounded-full hover:bg-gray-300 transition"
+                  >
+                    -
+                  </button>
+                  <span className="font-semibold text-lg w-8 text-center">
+                    {drink.quantity}
+                  </span>
+                  <button
+                    onClick={() => increaseQuantity(drink.id)}
+                    className="bg-gray-200 text-gray-700 font-bold py-1 px-3 rounded-full hover:bg-gray-300 transition"
+                  >
+                    +
+                  </button>
                 </div>
 
                 <button
                   onClick={() => {
                     removeFromCart(drink.id);
                   }}
-                  // 4. Упростили выравнивание кнопки удаления
-                  className="text-red-500 hover:text-red-700 font-bold text-2xl ml-auto self-center"
+                  className="absolute top-2 right-3 text-red-500 hover:text-red-700 font-bold text-2xl"
                   title="Удалить из корзины"
                 >
                   ✕
@@ -80,8 +82,8 @@ export default function Cart() {
             ))}
           </ul>
 
-          <div className="mt-8 border-t pt-4 flex flex-col items-end gap-4">
-            <p className="text-2xl font-bold text-white">Итого: ${total.toFixed(2)}</p>
+          <div className="mt-8 border-t border-gray-400 pt-4 flex flex-col items-end gap-4">
+            <p className="text-2xl font-bold text-blue-600">Итого: ${total.toFixed(2)}</p>
             <div className="flex gap-4">
               <button
                 onClick={clearCart}
