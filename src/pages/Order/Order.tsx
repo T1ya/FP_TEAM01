@@ -1,8 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../constants/routes";
+import { useTranslation } from "react-i18next";
 
 export default function Order() {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleHotDrink = () => navigate(ROUTES.HOT);
   const handleIcedDrink = () => navigate(ROUTES.ICED);
@@ -17,7 +19,7 @@ export default function Order() {
     >
       <div className="bg-white/70 rounded-2xl p-12 shadow-xl w-[600px] flex flex-col items-center text-center">
         <h2 className="text-3xl font-bold mb-8 text-brown-900 drop-shadow">
-          Выберите напиток
+          {t('selectDrink')}
         </h2>
         <div className="flex flex-col gap-5 w-full">
           <button
@@ -25,14 +27,14 @@ export default function Order() {
             onClick={handleHotDrink}
             className="bg-[#8B5E3C] hover:bg-[#734A2D] text-white text-xl py-4 px-6 rounded-lg shadow transition-all duration-300"
           >
-            ☕ Горячие напитки
+            {t('hotDrinks')}
           </button>
           <button
             type="button"
             onClick={handleIcedDrink}
             className="bg-[#D2B48C] hover:bg-[#b39b7a] text-brown-900 text-xl py-4 px-6 rounded-lg shadow transition-all duration-300"
           >
-            🧊 Холодные напитки
+            {t('coldDrinks')}
           </button>
         </div>
       </div>

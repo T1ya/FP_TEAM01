@@ -1,71 +1,60 @@
-import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import type Drink from "../../types";
-import { getPriceByType } from "../../utils/getPriceByType";
 import { useCart } from "../../hooks/useCart";
+import { useTranslation } from "react-i18next";
+import { getDrinkTranslationKey } from "../../i18n";
 
-
-export default function DrinkDetailPage() {
-  const navigate = useNavigate();
+export default function DrinkDetailsPage() {
   const { type, id } = useParams<{ type: string; id: string }>();
   const [drink, setDrink] = useState<Drink | null>(null);
+  const navigate = useNavigate();
   const { addToCart } = useCart();
-  
+  const { t } = useTranslation();
 
   useEffect(() => {
-    async function loadDrink() {
-      if (!type || !id) return;
-      const res = await fetch(
-        `https://api.sampleapis.com/coffee/${type}/${id}`
-      );
-      const data = await res.json();
-      setDrink({ ...data, price: getPriceByType(type) });
-    }
-
-    loadDrink();
+    fetch(`https://api.sampleapis.com/coffee/${type}/${id}`)
+      .then((res) => res.json())
+      .then((data) => setDrink(data))
+      .catch(console.error);
   }, [type, id]);
 
-  if (!drink) return <p className="p-6 text-gray-500">Загрузка напитка...</p>;
+  if (!drink) {
+    return <div>{t('loadingDrink')}</div>;
+  }
+  
+  const drinkKey = getDrinkTranslationKey(drink.title);
 
   return (
-    <div className="max-w-4xl mx-auto p-8 bg-white rounded-xl shadow-md">
-      <div className="flex flex-col md:flex-row gap-8">
-        <img
-          src={Array.isArray(drink.image) ? drink.image[0] : drink.image}
-          alt={drink.title}
-          className="w-full md:w-1/2 h-auto rounded-xl object-cover"
-        />
-
-        <div className="flex flex-col gap-4 flex-1">
-          <h1 className="text-3xl font-bold text-gray-800">{drink.title}</h1>
-          <p className="text-gray-600 text-lg">{drink.description}</p>
-
-          <div className="text-sm text-gray-500">
-            <span className="font-semibold text-gray-700">Ингредиенты:</span>{" "}
-            {Array.isArray(drink.ingredients)
-              ? drink.ingredients.join(", ")
-              : "Нет данных"}
-            {/* {drink.ingredients.join(", ")} */}
-          </div>
-
-          <div className="text-2xl font-bold text-green-700 mt-2">
-            ${drink.price}
-          </div>
-
-          <button
-            onClick={() => addToCart(drink)}
-            className="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded mt-4"
-          >
-            Добавить в корзину
-          </button>
-          <button
-            onClick={() => navigate(-1)}
-            className="text-sm text-gray-600 hover:text-blue-600 mb-6"
-          >
-            ← Назад
-          </button>
+    <div className="container mx-auto p-8">
+        <button onClick={() => navigate(-1)} className="mb-4 bg-gray-200 px-4 py-2 rounded">
+            {t('backButton')}
+        </button>
+        <div className="bg-white rounded-lg shadow-xl p-6 md:flex gap-8">
+            <img src={Array.isArray(drink.image) ? drink.image[0] : drink.image} alt={drink.title} className="w-full md:w-1/3 h-auto object-cover rounded-lg mb-4 md:mb-0" />
+            <div className="md:w-2/3">
+                <h1 className="text-3xl font-bold mb-2">
+                  {drinkKey ? t(`${drinkKey}_title`) : drink.title}
+                </h1>
+                
+                <p className="text-gray-700 mb-4">
+                  {drinkKey ? t(`${drinkKey}_desc`) : drink.description}
+                </p>
+                <div className="mb-4">
+                    <h2 className="text-xl font-semibold">{t('ingredients')}:</h2>
+                    <ul className="list-disc list-inside">
+                        <li>
+                          {drinkKey ? t(`${drinkKey}_ingredients`) : (Array.isArray(drink.ingredients) ? drink.ingredients.join(", ") : "Нет данных")}
+                        </li>
+                    </ul>
+                </div>
+                <button 
+                    onClick={() => addToCart(drink)} 
+                    className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                    {t('addToCart')}
+                </button>
+            </div>
         </div>
-      </div>
     </div>
   );
 }

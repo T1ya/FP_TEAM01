@@ -1,20 +1,28 @@
-import React, { useEffect } from "react";
+
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../constants/routes";
 import { useCart } from "../../hooks/useCart";
 import { useCounter } from "../../hooks/useCounter";
+import { useTranslation } from "react-i18next";
 
 const Ready: React.FC = () => {
   const navigate = useNavigate();
-  const { reset } = useCounter(); // сброс счётчика
-  const { clearCart } = useCart(); // сброс корзины
+  const { reset } = useCounter();
+  const { clearCart } = useCart();
+  const { t } = useTranslation();
 
-  useEffect(() => {
-    reset(); // сбрасываем счётчик
-    clearCart(); // очищаем корзину
-  }, []);
+  /*  временно отключим этот блок. 
+    Если кнопка заработает, значит, ошибка была здесь.
+  */
+  // useEffect(() => {
+  //   reset();
+  //   clearCart();
+  // }, [reset, clearCart]);
 
   const handleBackHome = () => {
+    
+    reset();
+    clearCart();
     navigate(ROUTES.HOME);
   };
 
@@ -36,17 +44,17 @@ const Ready: React.FC = () => {
         </div>
 
         <p className="text-3xl font-bold text-brown-900 animate-pulse mb-2">
-          Ваш кофе готов!
+          {t('coffeeReady')}
         </p>
         <p className="text-xl font-medium text-brown-800 mb-8">
-          Идеальный момент — прямо сейчас 🤎
+          {t('readySub')}
         </p>
 
         <button
           onClick={handleBackHome}
           className="bg-yellow-700 hover:bg-yellow-800 text-white font-semibold py-3 px-32 rounded-lg shadow-lg transition-all duration-300 text-lg"
         >
-          На главную
+          {t('toMainPage')}
         </button>
       </div>
 
