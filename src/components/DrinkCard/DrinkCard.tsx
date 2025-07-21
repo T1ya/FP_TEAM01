@@ -44,7 +44,6 @@ export default function DrinkCard({
             {Array.isArray(drink.ingredients)
               ? drink.ingredients.join(", ")
               : "Нет данных"}
-            {/* {drink.ingredients.join(", ")} */}
           </div>
         )}
 
