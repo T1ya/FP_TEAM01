@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { useCart } from "../../hooks/useCart";
 import { useCounter } from "../../hooks/useCounter";
@@ -42,6 +41,9 @@ export default function DrinkCard({
         {drink.ingredients?.length > 0 && (
           <div className="text-sm text-gray-500">
             <span className="font-medium text-gray-700">Ингредиенты:</span>{" "}
+            {Array.isArray(drink.ingredients)
+              ? drink.ingredients.join(", ")
+              : "Нет данных"}
             {/* {drink.ingredients.join(", ")} */}
           </div>
         )}

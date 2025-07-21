@@ -42,7 +42,10 @@ export default function DrinkDetailPage() {
 
           <div className="text-sm text-gray-500">
             <span className="font-semibold text-gray-700">Ингредиенты:</span>{" "}
-            {drink.ingredients.join(", ")}
+            {Array.isArray(drink.ingredients)
+              ? drink.ingredients.join(", ")
+              : "Нет данных"}
+            {/* {drink.ingredients.join(", ")} */}
           </div>
 
           <div className="text-2xl font-bold text-green-700 mt-2">
