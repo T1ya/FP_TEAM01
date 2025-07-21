@@ -1,13 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import type Drink from "../../types";
-// interface Drink {
-//   id: number;
-//   title: string;
-//   description: string;
-//   ingredients: string[];
-//   image: string | string[];
-// }
 
 export const IcedDrinks = () => {
   const [drinks, setDrinks] = useState<Drink[]>([]);
