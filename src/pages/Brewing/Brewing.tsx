@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const Brewing: React.FC = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -13,9 +15,8 @@ const Brewing: React.FC = () => {
   }, [navigate]);
 
   return (
-          <div
+    <div
       className="w-full h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center"
-      
     >
       <div className="bg-white/70 rounded-2xl p-20 shadow-xl w-[600px] flex flex-col items-center animate-fade-in text-center relative overflow-hidden">
         <div className="relative mb-8">
@@ -27,7 +28,7 @@ const Brewing: React.FC = () => {
         </div>
 
         <p className="text-3xl font-extrabold text-brown-900 animate-pulse mb-10">
-          Готовим напиток...
+          {t('brewing')}
         </p>
 
         <div className="w-full h-3 bg-brown-200 rounded-full overflow-hidden">
