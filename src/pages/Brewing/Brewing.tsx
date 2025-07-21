@@ -13,27 +13,24 @@ const Brewing: React.FC = () => {
   }, [navigate]);
 
   return (
-    <div
+          <div
       className="w-full h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center"
-      style={{
-        backgroundImage:
-          "url('https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=1742&auto=format&fit=crop')",
-      }}
+      
     >
-      <div className="bg-white/70 rounded-2xl p-20 shadow-xl w-[600px] flex flex-col items-center animate-fade-in text-center relative">
-        <div className="relative mb-6">
-          <div className="w-24 h-16 bg-brown-700 rounded-b-full relative z-10"></div>
-          <div className="absolute top-2 right-[-15px] w-6 h-10 border-4 border-brown-700 rounded-full z-0"></div>
-          <div className="absolute top-[-30px] left-[30%] w-2 h-10 bg-white/70 rounded-full animate-steam"></div>
-          <div className="absolute top-[-40px] left-[45%] w-2 h-12 bg-white/60 rounded-full animate-steam delay-200"></div>
-          <div className="absolute top-[-50px] left-[60%] w-2 h-14 bg-white/50 rounded-full animate-steam delay-500"></div>
+      <div className="bg-white/70 rounded-2xl p-20 shadow-xl w-[600px] flex flex-col items-center animate-fade-in text-center relative overflow-hidden">
+        <div className="relative mb-8">
+          <div className="w-32 h-20 bg-brown-700 rounded-b-full relative z-10"></div>
+          <div className="absolute top-3 right-[-20px] w-8 h-12 border-[6px] border-brown-700 rounded-full z-0"></div>
+          <div className="absolute top-[-40px] left-[30%] w-2 h-12 bg-white/70 rounded-full animate-steam"></div>
+          <div className="absolute top-[-50px] left-[45%] w-2 h-14 bg-white/60 rounded-full animate-steam delay-200"></div>
+          <div className="absolute top-[-60px] left-[60%] w-2 h-16 bg-white/50 rounded-full animate-steam delay-500"></div>
         </div>
 
-        <p className="text-3xl font-extrabold text-brown-900 animate-pulse mb-4">
+        <p className="text-3xl font-extrabold text-brown-900 animate-pulse mb-10">
           Готовим напиток...
         </p>
 
-        <div className="absolute bottom-0 left-0 w-full h-2 bg-brown-200 rounded-b-2xl overflow-hidden">
+        <div className="w-full h-3 bg-brown-200 rounded-full overflow-hidden">
           <div className="h-full bg-brown-700 animate-progress-bar"></div>
         </div>
       </div>
