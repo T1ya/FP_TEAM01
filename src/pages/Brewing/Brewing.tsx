@@ -13,11 +13,7 @@ const Brewing: React.FC = () => {
   }, [navigate]);
   return (
     <div
-      className="w-full h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center"
-      style={{
-        backgroundImage:
-          "url('https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
-      }}
+      
     >
       <div className="bg-white/70 rounded-2xl p-10 shadow-xl w-[300px] flex flex-col items-center">
         <div className="relative mb-4">
