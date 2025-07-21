@@ -1,52 +1,17 @@
 import { useEffect, useState } from "react";
-// import { Link } from "react-router-dom";
 import type Drink from "../../types";
 import DrinkCard from "../../components/DrinkCard/DrinkCard";
 import { getPriceByType } from "../../utils/getPriceByType";
 
-// interface Drink {
-//   id: number;
-//   title: string;
-//   description: string;
-//   ingredients: string[];
-//   image: string | string[];
-// }
 
 export const IcedDrinks = () => {
   const [drinks, setDrinks] = useState<Drink[]>([]);
-  // const [error, setError] = useState<string | null>(null);
-  // const [loading, setLoading] = useState(true);
   const type = "iced";
 
   useEffect(() => {
-    // async function fetchDrinks() {
-    //   try {
-    //     const res = await fetch("https://api.sampleapis.com/coffee/iced");
-    //     if (!res.ok) {
-    //       throw new Error("Failed to fetch drinks");
-    //     }
-    //     const data: Drink[] = await res.json();
-    //     setDrinks(data);
-    //   } catch (err) {
-    //     if (err instanceof Error) {
-    //       setError(err.message);
-    //     } else {
-    //       setError("Unknown error");
-    //     }
-    //   } finally {
-    //     setLoading(false);
-    //   }
-    // }
-
     fetchDrinks();
   }, []);
 
-  // if (loading) {
-  //   return <div>Loading...</div>;
-  // }
-
-  // if (error) {
-  //   return <div className="text-red-500">Error: {error}</div>;
   async function fetchDrinks() {
     try {
       const res = await fetch(`https://api.sampleapis.com/coffee/${type}`);
@@ -63,6 +28,19 @@ export const IcedDrinks = () => {
   }
 
   return (
+    <div className="p-8 min-h-screen">
+      <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {drinks.map((drink) => (
+          <li key={drink.id}>
+            <DrinkCard drink={drink} type="iced" />
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+
 //     <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
 //     {drinks.map((drink) => (
 //       <div
@@ -90,58 +68,4 @@ export const IcedDrinks = () => {
 //     ))}
 //   </div>
 // );
-<div className="p-8 min-h-screen">
-      {/* <h2 className="text-3xl font-bold text-center mb-10">Products list</h2> */}
 
-      <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        {drinks.map((drink) => (
-          <li key={drink.id}>
-            <DrinkCard drink={drink} type="iced" />
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-};
-
-// import { useEffect, useState } from "react";
-// import type Drink from "../../types";
-// import DrinkCard from "../../components/DrinkCard/DrinkCard";
-// import { getPriceByType } from "../../utils/getPriceByType";
-
-// export const IcedDrinks = () => {
-//   const [drinks, setDrinks] = useState<Drink[]>([]);
-//   const type = "iced";
-//   useEffect(() => {
-//     fetchDrinks();
-//   }, []);
-
-//   async function fetchDrinks() {
-//     try {
-//       const res = await fetch(`https://api.sampleapis.com/coffee/${type}`);
-//       const apiDrinks: Drink[] = await res.json();
-//       const pricedDrinks = apiDrinks.map((drink) => ({
-//         ...drink,
-//         price: getPriceByType(type),
-//       }));
-
-//       setDrinks(pricedDrinks);
-//     } catch (error) {
-//       console.error("Failed to fetch drinks:", error);
-//     }
-//   }
-
-//   return (
-//     <div className="p-8 min-h-screen">
-//       {/* <h2 className="text-3xl font-bold text-center mb-10">Products list</h2> */}
-
-//       <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-//         {drinks.map((drink) => (
-//           <li key={drink.id}>
-//             <DrinkCard drink={drink} type="iced" />
-//           </li>
-//         ))}
-//       </ul>
-//     </div>
-//   );
-// };
