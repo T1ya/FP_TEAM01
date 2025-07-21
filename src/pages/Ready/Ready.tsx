@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../constants/routes";
+import { useCart } from "../../hooks/useCart";
+import { useCounter } from "../../hooks/useCounter";
 
 const Ready: React.FC = () => {
   const navigate = useNavigate();
+  const { reset } = useCounter(); // сброс счётчика
+  const { clearCart } = useCart(); // сброс корзины
+
+  useEffect(() => {
+    reset(); // сбрасываем счётчик
+    clearCart(); // очищаем корзину
+  }, []);
 
   const handleBackHome = () => {
     navigate(ROUTES.HOME);

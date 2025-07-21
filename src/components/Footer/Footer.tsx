@@ -1,6 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { ROUTES } from "../../constants/routes";
+import {
+  FaEnvelope,
+  FaPhone,
+  FaFacebookF,
+  FaTwitter,
+  FaInstagram,
+} from "react-icons/fa";
 
 interface FooterProps {
   className?: string;
@@ -8,58 +13,62 @@ interface FooterProps {
 
 export const Footer: React.FC<FooterProps> = ({ className }) => {
   return (
-    <footer className={`text-black py-3 ${className}`}>
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <footer
+      className={`w-full bg-[#ece6dc]/80 border-t border-gray-300 text-gray-800 text-sm pt-4 ${className}`}
+    >
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+          {/* About Us */}
           <div>
-            <h3 className="text-lg font-bold mb-2">About Us</h3>
-            <p className="text-black text-sm">
+            <h3 className="text-base font-semibold mb-2">About Us</h3>
+            <p className="leading-relaxed">
               Our coffee shop is a place where every sip tells a story. Come in
               for a cup of warmth and comfort in the heart of the city.
             </p>
+            <p className="mt-2 border-t-2">© 2025 team01. All rights reserved.</p>
           </div>
 
-          <div className="ml-16">
-            <h3 className="text-lg font-bold mb-2">Links</h3>
-            <ul>
-              <li>
-                <Link
-                  to={ROUTES.HOME}
-                  className="text-black hover:text-gray-500 text-sm"
-                >
-                  Home
-                </Link>
+          {/* Contact */}
+          <div>
+            <h3 className="text-base font-semibold mb-2">Contact</h3>
+            <ul className="space-y-2">
+              <li className="flex items-center gap-2">
+                <FaEnvelope className="text-[16px]" />
+                <span>info@example.com</span>
               </li>
-              <li>
-                <a href="#" className="text-black hover:text-gray-500 text-sm">
-                  Services
-                </a>
+              <li className="flex items-center gap-2">
+                <FaPhone className="text-[16px]" />
+                <span>+1 234 567 890</span>
               </li>
             </ul>
           </div>
 
+          {/* Social Links */}
           <div>
-            <h3 className="text-lg font-bold mb-2">Contact</h3>
-            <p className="text-black text-sm">Email: info@example.com</p>
-            <p className="text-black text-sm">Phone: +1 234 567 890</p>
-          </div>
-        </div>
-
-        <div className="flex justify-between items-center pt-3 mt-3 border-t border-gray-700">
-          <p className="text-black text-sm">
-            © 2025 team01. All rights reserved.
-          </p>
-
-          <div className="flex space-x-4">
-            <a href="#" className="text-black hover:text-gray-500 text-sm">
-              Facebook
-            </a>
-            <a href="#" className="text-black hover:text-gray-500 text-sm">
-              Twitter
-            </a>
-            <a href="#" className="text-black hover:text-gray-500 text-sm">
-              Instagram
-            </a>
+            <h3 className="text-base font-semibold mb-2">Follow Us</h3>
+            <div className="flex flex-wrap gap-4">
+              <a
+                href="#"
+                className="flex items-center gap-2 hover:text-brown-700 transition"
+              >
+                <FaFacebookF />
+                <span>Facebook</span>
+              </a>
+              <a
+                href="#"
+                className="flex items-center gap-2 hover:text-brown-700 transition"
+              >
+                <FaTwitter />
+                <span>Twitter</span>
+              </a>
+              <a
+                href="#"
+                className="flex items-center gap-2 hover:text-brown-700 transition"
+              >
+                <FaInstagram />
+                <span>Instagram</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>
