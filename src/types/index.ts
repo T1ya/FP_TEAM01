@@ -6,5 +6,6 @@ export default interface Drink   {
     description: string,
     ingredients: string[],
     image: string[] | string,
-    id:number
+    id:number,
+    quantity?: number;
   }
