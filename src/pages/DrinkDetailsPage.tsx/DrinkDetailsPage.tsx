@@ -3,14 +3,14 @@ import { useEffect, useState } from "react";
 import type Drink from "../../types";
 import { getPriceByType } from "../../utils/getPriceByType";
 import { useCart } from "../../hooks/useCart";
-import { useCounter } from "../../hooks/useCounter";
+
 
 export default function DrinkDetailPage() {
   const navigate = useNavigate();
   const { type, id } = useParams<{ type: string; id: string }>();
   const [drink, setDrink] = useState<Drink | null>(null);
   const { addToCart } = useCart();
-  const { increment } = useCounter();
+  
 
   useEffect(() => {
     async function loadDrink() {
@@ -50,10 +50,7 @@ export default function DrinkDetailPage() {
           </div>
 
           <button
-            onClick={() => {
-              addToCart(drink);
-              increment();
-            }}
+            onClick={() => addToCart(drink)}
             className="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded mt-4"
           >
             Добавить в корзину
