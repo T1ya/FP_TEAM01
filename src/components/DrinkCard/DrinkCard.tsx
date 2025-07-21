@@ -42,7 +42,7 @@ export default function DrinkCard({
         {drink.ingredients?.length > 0 && (
           <div className="text-sm text-gray-500">
             <span className="font-medium text-gray-700">Ингредиенты:</span>{" "}
-            {drink.ingredients.join(", ")}
+            {/* {drink.ingredients.join(", ")} */}
           </div>
         )}
 
