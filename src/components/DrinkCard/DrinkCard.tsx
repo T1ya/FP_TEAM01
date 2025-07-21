@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { useCart } from "../../hooks/useCart";
 import { useCounter } from "../../hooks/useCounter";
@@ -20,7 +21,7 @@ export default function DrinkCard({
   const { increment } = useCounter();
 
   return (
-    <div className="flex flex-col bg-white rounded-xl shadow-lg overflow-hidden group hover:shadow-2xl transition duration-300">
+    <div className="flex flex-col h-full bg-white rounded-xl shadow-lg overflow-hidden group hover:shadow-2xl transition duration-300">
       <div className="relative">
         <img
           src={Array.isArray(drink.image) ? drink.image[0] : drink.image}
@@ -32,11 +33,12 @@ export default function DrinkCard({
         </span>
       </div>
 
-      <div className="p-4 flex flex-col flex-grow gap-2">
+      <div className="p-4 flex flex-col flex-1 gap-2">
         <h2 className="text-lg font-semibold text-gray-900">{drink.title}</h2>
         <p className="text-sm text-gray-600 line-clamp-3">
           {drink.description}
         </p>
+
         {drink.ingredients?.length > 0 && (
           <div className="text-sm text-gray-500">
             <span className="font-medium text-gray-700">Ингредиенты:</span>{" "}
@@ -44,11 +46,14 @@ export default function DrinkCard({
           </div>
         )}
 
-        <div className="mt-auto flex gap-2">
+        {/* Кнопки по центру */}
+        <div className="mt-auto flex justify-center gap-2">
           {showAddToCart && (
             <button
-              onClick={() => {addToCart(drink)
-              increment()}}
+              onClick={() => {
+                addToCart(drink);
+                increment();
+              }}
               className="bg-green-600 hover:bg-green-700 text-white text-sm font-medium px-4 py-2 rounded"
             >
               В корзину
