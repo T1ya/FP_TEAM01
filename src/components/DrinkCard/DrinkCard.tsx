@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { useCart } from "../../hooks/useCart";
-import { useCounter } from "../../hooks/useCounter";
 
 import type Drink from "../../types";
 
@@ -18,7 +17,6 @@ export default function DrinkCard({
   showLink = true,
 }: Props) {
   const { addToCart } = useCart();
-  const { increment } = useCounter();
   
   return (
     <div className="flex flex-col h-full bg-white rounded-xl shadow-lg overflow-hidden group hover:shadow-2xl transition duration-300">
@@ -54,7 +52,6 @@ export default function DrinkCard({
             <button
               onClick={() => {
                 addToCart(drink);
-                increment();
               }}
               className="bg-green-600 hover:bg-green-700 text-white text-sm font-medium px-4 py-2 rounded"
             >
