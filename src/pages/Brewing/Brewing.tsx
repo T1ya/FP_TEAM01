@@ -6,17 +6,22 @@ const Brewing: React.FC = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigate('/ready');  
-    }, 10000);  
+      navigate('/ready');
+    }, 10000);
 
-    return () => clearTimeout(timer); 
+    return () => clearTimeout(timer);
   }, [navigate]);
+
   return (
     <div
-      
+      className="w-full h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center"
+      style={{
+        backgroundImage:
+          "url('https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=1742&auto=format&fit=crop')",
+      }}
     >
-      <div className="bg-white/70 rounded-2xl p-10 shadow-xl w-[300px] flex flex-col items-center">
-        <div className="relative mb-4">
+      <div className="bg-white/70 rounded-2xl p-20 shadow-xl w-[600px] flex flex-col items-center animate-fade-in text-center relative">
+        <div className="relative mb-6">
           <div className="w-24 h-16 bg-brown-700 rounded-b-full relative z-10"></div>
           <div className="absolute top-2 right-[-15px] w-6 h-10 border-4 border-brown-700 rounded-full z-0"></div>
           <div className="absolute top-[-30px] left-[30%] w-2 h-10 bg-white/70 rounded-full animate-steam"></div>
@@ -24,9 +29,10 @@ const Brewing: React.FC = () => {
           <div className="absolute top-[-50px] left-[60%] w-2 h-14 bg-white/50 rounded-full animate-steam delay-500"></div>
         </div>
 
-        <p className="text-xl font-semibold text-brown-900 animate-pulse text-center">
+        <p className="text-3xl font-extrabold text-brown-900 animate-pulse mb-4">
           Готовим напиток...
         </p>
+
         <div className="absolute bottom-0 left-0 w-full h-2 bg-brown-200 rounded-b-2xl overflow-hidden">
           <div className="h-full bg-brown-700 animate-progress-bar"></div>
         </div>
@@ -61,7 +67,7 @@ const Brewing: React.FC = () => {
             background-color: #5C4033;
           }
 
-            .bg-brown-200 {
+          .bg-brown-200 {
             background-color: #d3b8a3;
           }
 
@@ -69,7 +75,7 @@ const Brewing: React.FC = () => {
             border-color: #5C4033;
           }
 
-        @keyframes progressBar {
+          @keyframes progressBar {
             0% {
               width: 0%;
             }
